@@ -47,8 +47,32 @@ dist/
 * **Enhancements**: Live progress bar during indexing, regex search, MCP server integration.
 
 
+### Installation Options
+#### From Release
+1. Download the binary for your OS from [Releases](https://github.com/willworth/trigram-code-atlas/releases).
+2. Move to a PATH dir:
+   - **macOS/Linux**: `sudo mv tca-darwin-arm64 /usr/local/bin/tca`
+   - **Windows**: Move `tca-windows-amd64.exe` to `C:\Program Files\tca` and add to PATH.
+3. Run: `tca build ./myrepo`
+
+#### From Source (Requires Go)
+1. Install Go: [golang.org](https://golang.org/dl/)
+2. Run:
+   ```bash
+   go install github.com/willworth/trigram-code-atlas@v0.1.0
+
+    Ensure ~/go/bin is in your PATH:
+    bash
+
+    echo 'export PATH="$HOME/go/bin:$PATH"' >> ~/.zshrc
+    source ~/.zshrc
+
+    Run: tca build ./myrepo
+
+
+
 ## Contributing
-Fork, tweak, PR—let's make it better! See DEV-README.md for dev details.
+Fork, tweak, PR—let's make it better! See DEVREADME.md for dev details.
 
 ## License
 MIT.
