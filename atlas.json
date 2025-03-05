@@ -4,29 +4,29 @@
       "path": "testrepo/main.js",
       "trigrams": [
         "cti",
-        "tio",
         "n m",
+        " ma",
+        "in(",
+        ") {",
+        "unc",
+        "on ",
         "mai",
         " {}",
-        "nct",
-        "ion",
-        "in(",
-        "() ",
-        "unc",
-        " ma",
         "{}\n",
+        "ion",
+        "tio",
+        "() ",
         "fun",
-        "on ",
         "ain",
         "n()",
-        ") {"
+        "nct"
       ],
       "mtime": "2025-03-05T12:07:01+01:00"
     }
   ],
   "metadata": {
     "version": "1.0",
-    "created": "2025-03-05T14:06:20+01:00",
+    "created": "2025-03-05T14:09:54+01:00",
     "file_count": 1
   }
 }
