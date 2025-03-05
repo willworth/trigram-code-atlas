@@ -42,12 +42,22 @@ func Build(fs *flag.FlagSet, args []string) {
 
 	atlasPath := "atlas.json"
 	if !*force && util.FileExists(atlasPath) {
-		fmt.Fprintf(os.Stderr, "Error: '%s' already exists. Use --force to overwrite.\n", atlasPath)
-		os.Exit(1)
+		fmt.Fprintf(os.Stderr, "\033[33mWarning: '%s' already exists.\033[0m\n", atlasPath)
+		fmt.Print("Would you like to overwrite it? [y/N]: ")
+		
+		var response string
+		fmt.Scanln(&response)
+		
+		if strings.ToLower(response) == "y" {
+			fmt.Println("\033[32mContinuing with overwrite...\033[0m")
+		} else {
+			fmt.Fprintf(os.Stderr, "\033[31mOperation cancelled.\033[0m\n")
+			os.Exit(1)
+		}
 	}
-
+	
 	if *verbose {
-		fmt.Printf("Building atlas for '%s'...\n", dir)
+		fmt.Printf("\033[34mBuilding atlas for '%s'...\033[0m\n", dir)
 	}
 	atlas, err := indexer.BuildAtlas(dir, *verbose)
 	if err != nil {
@@ -75,8 +85,8 @@ func Build(fs *flag.FlagSet, args []string) {
 	}
 
 	if *verbose {
-		fmt.Printf("Success: Atlas built with %d files\n", atlas.Metadata.FileCount)
+		fmt.Printf("\033[32mSuccess: Atlas built with %d files\033[0m\n", atlas.Metadata.FileCount)
 	} else {
-		fmt.Println("Success: Atlas built")
+		fmt.Println("\033[32mSuccess: Atlas built\033[0m")
 	}
 }
