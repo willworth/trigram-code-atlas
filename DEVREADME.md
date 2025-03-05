@@ -55,19 +55,22 @@ This is the dev companion to `TrigramCodeAtlas` (`tca`), a Go CLI for indexing c
 
 ## Current Bugs
 
-- **Flag Parsing Fails**:
-  - `go run main.go build testrepo --force` and `--verbose` exit with:
+- ~~**Flag Parsing Fails**~~: Fixed in commit [args-bug]
+  - Solution: Improved flag parsing in cmd/build.go by:
+    1. Extracting directory argument first
+    2. Parsing remaining flags separately
+    3. Enhanced error messages and progress bar feedback
+  - Status: All flags working (`--force`, `--verbose`)
+  - Test cases passing:
+    ```bash
+    go run main.go build testrepo
+    go run main.go build testrepo --force
+    go run main.go build testrepo --verbose --force
     ```
-    Usage: tca build <dir> [--verbose] [--force]
-    ```
-  - Cause: main.go passes raw os.Args[2:] (e.g., ["testrepo", "--force"]) to cmd.Build, but len(args) != 1 expects only ["testrepo"]. Fix attempted with buildCmd.Args(), but still broken.
-  - Status: build works without flags; flags trigger usage error.
 
 ## Next Steps
 
-- **Fix Flag Parsing**:
-  - Debug main.go and cmd/build.go to ensure buildCmd.Args() passes only positional args.
-  - Test: `go run main.go build testrepo --verbose --force`.
+- ~~**Fix Flag Parsing**~~: Completed
 - **Implement tca search**:
   - Read atlas.json, match trigrams, print results.
   - Flags: --verbose, --limit.

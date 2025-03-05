@@ -45,10 +45,10 @@ dist/
 ## Roadmap
 * **MVP Completion**: Fix flag parsing for build, implement search and update.
 * **Enhancements**: Live progress bar during indexing, regex search, MCP server integration.
-* **Distribution**: Binary releases, potential SaaS tie-in.
+
 
 ## Contributing
 Fork, tweak, PR—let's make it better! See DEV-README.md for dev details.
 
 ## License
-MIT (TBD—add your preference!).
+MIT.
