@@ -21,13 +21,16 @@ func main() {
 	switch os.Args[1] {
 	case "build":
 		buildCmd := flag.NewFlagSet("build", flag.ExitOnError)
-		cmd.Build(buildCmd, os.Args[2:])
+		buildCmd.Parse(os.Args[2:])          // Parse flags like --verbose, --force
+		cmd.Build(buildCmd, buildCmd.Args()) // Pass only positional args (e.g., "testrepo")
 	case "search":
 		searchCmd := flag.NewFlagSet("search", flag.ExitOnError)
-		cmd.Search(searchCmd, os.Args[2:])
+		searchCmd.Parse(os.Args[2:])
+		cmd.Search(searchCmd, searchCmd.Args())
 	case "update":
 		updateCmd := flag.NewFlagSet("update", flag.ExitOnError)
-		cmd.Update(updateCmd, os.Args[2:])
+		updateCmd.Parse(os.Args[2:])
+		cmd.Update(updateCmd, updateCmd.Args())
 	default:
 		fmt.Printf("Unknown command: %s\n", os.Args[1])
 		os.Exit(1)

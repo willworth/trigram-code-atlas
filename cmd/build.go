@@ -16,11 +16,11 @@ func Build(fs *flag.FlagSet, args []string) {
 	force := fs.Bool("force", false, "Overwrite existing atlas.json")
 	fs.Parse(args)
 
-	if fs.NArg() != 1 {
+	if len(args) != 1 {
 		fmt.Println("Usage: tca build <dir> [--verbose] [--force]")
 		os.Exit(1)
 	}
-	dir := fs.Arg(0)
+	dir := args[0]
 
 	atlasPath := "atlas.json"
 	if !*force && util.FileExists(atlasPath) {
