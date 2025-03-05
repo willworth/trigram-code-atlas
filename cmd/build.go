@@ -111,26 +111,28 @@ func Build(fs *flag.FlagSet, args []string) {
 	}
 }
 
-// runInteractiveMode prompts the user for build options
+// runInteractiveMode prompts the user for build options with colors
 func runInteractiveMode() (dir string, verbose, force bool, output string) {
-	fmt.Print("Which directory to index? (default: .): ")
+	defaultOutput := fmt.Sprintf("%s-atlas-%s.json", filepath.Base("."), time.Now().Format("2006-01-02"))
+
+	fmt.Printf("%sWhich directory to index? (default: .): %s", colorBlue, colorReset)
 	fmt.Scanln(&dir)
 	if dir == "" {
 		dir = "."
 	}
 
-	fmt.Print("Output file? (default: <dir>-atlas-YYYY-MM-DD.json, e.g., " + filepath.Base(dir) + "-atlas-" + time.Now().Format("2006-01-02") + ".json): ")
+	fmt.Printf("%sOutput file? (default: %s): %s", colorBlue, defaultOutput, colorReset)
 	fmt.Scanln(&output)
-	if output == "" {
+	if output == "" || len(output) < 3 { // Basic validation
 		output = fmt.Sprintf("%s-atlas-%s.json", filepath.Base(dir), time.Now().Format("2006-01-02"))
 	}
 
-	fmt.Print("Force overwrite if file exists? [y/N]: ")
+	fmt.Printf("%sForce overwrite if file exists? [y/N]: %s", colorYellow, colorReset)
 	var forceResp string
 	fmt.Scanln(&forceResp)
 	force = strings.ToLower(forceResp) == "y"
 
-	fmt.Print("Verbose output? [y/N]: ")
+	fmt.Printf("%sVerbose output? [y/N]: %s", colorGreen, colorReset)
 	var verboseResp string
 	fmt.Scanln(&verboseResp)
 	verbose = strings.ToLower(verboseResp) == "y"
