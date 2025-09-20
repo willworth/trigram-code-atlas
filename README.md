@@ -1,6 +1,6 @@
 # TrigramCodeAtlas (`tca`)
 
-**TrigramCodeAtlas** (`tca`) is a command-line tool written in Go that indexes codebases using trigrams, making them AI-ready for tools like LLMs (e.g., Grok, Claude). It's built for developers who want to automate workflows across multi-language projects, inspired by Yacine's vision of AI-driven productivity.
+**TrigramCodeAtlas** (`tca`) is a command-line tool written in Go that indexes codebases using trigrams, making them AI-ready for tools like LLMs (e.g., Grok, Claude). It's built for developers who want to automate workflows across multi-language projects.
 
 ## Features
 - Indexes source files (`.go`, `.js`, `.ts`, etc.) into a JSON atlas (`atlas.json`) with trigrams.
